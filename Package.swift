@@ -4,32 +4,6 @@
 import PackageDescription
 import Foundation
 
-let dependencies: [Package.Dependency]
-#if swift(>=5.9)
-dependencies = [
-    .package(url: "https://github.com/apple/swift-argument-parser", .upToNextMinor(from: "1.2.2")),
-    .package(url: "https://github.com/apple/swift-package-manager", branch: "release/5.9"),
-    .package(url: "https://github.com/apple/swift-log.git", .upToNextMinor(from: "1.4.2")),
-    .package(url: "https://github.com/apple/swift-collections", from: "1.0.4"),
-    .package(url: "https://github.com/apple/swift-algorithms.git", from: "1.0.0"),
-    .package(url: "https://github.com/onevcat/Rainbow", .upToNextMinor(from: "4.0.1")),
-    .package(url: "https://github.com/soto-project/soto-codegenerator", from: "0.6.0"),
-    .package(url: "https://github.com/soto-project/soto-core.git", from: "6.4.0"),
-]
-#else
-dependencies = [
-    .package(url: "https://github.com/giginet/swift-package-manager.git",
-             revision: "11c88e87e6874a570711d18462ca0ea43ff7ff5e"),
-    .package(url: "https://github.com/apple/swift-log.git", .upToNextMinor(from: "1.4.2")),
-    .package(url: "https://github.com/apple/swift-collections", from: "1.0.4"),
-    .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.1.0"),
-    .package(url: "https://github.com/apple/swift-algorithms.git", from: "1.0.0"),
-    .package(url: "https://github.com/onevcat/Rainbow", .upToNextMinor(from: "4.0.1")),
-    .package(url: "https://github.com/soto-project/soto-codegenerator", from: "0.6.0"),
-    .package(url: "https://github.com/soto-project/soto-core.git", from: "6.4.0"),
-]
-#endif
-
 let package = Package(
     name: "Scipio",
     platforms: [
@@ -45,7 +19,16 @@ let package = Package(
             name: "ScipioS3Storage",
             targets: ["ScipioS3Storage"]),
     ],
-    dependencies: dependencies,
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-argument-parser", .upToNextMinor(from: "1.2.2")),
+        .package(url: "https://github.com/apple/swift-package-manager", branch: "release/5.9"),
+        .package(url: "https://github.com/apple/swift-log.git", .upToNextMinor(from: "1.4.2")),
+        .package(url: "https://github.com/apple/swift-collections", from: "1.0.4"),
+        .package(url: "https://github.com/apple/swift-algorithms.git", from: "1.0.0"),
+        .package(url: "https://github.com/onevcat/Rainbow", .upToNextMinor(from: "4.0.1")),
+        .package(url: "https://github.com/soto-project/soto-codegenerator", from: "0.6.0"),
+        .package(url: "https://github.com/soto-project/soto-core.git", from: "6.4.0"),
+    ],
     targets: [
         .executableTarget(name: "scipio",
                           dependencies: [
